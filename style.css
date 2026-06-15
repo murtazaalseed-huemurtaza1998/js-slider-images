@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Tahoma, Arial;
+  background: #f4f4f4;
+  padding: 20px 0;
+}
+.slider-container {
+  margin: 10px auto;
+  width: 800px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: #000; /* خلفية للفراغات */
+}
+.slider-container img {
+  position: absolute; /* رجعناها مهمة للسلايدر */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* خليها 100% نفس الكونتينر */
+  object-fit: contain; /* تبين الصورة كاملة */
+  opacity: 0; /* مخفية بالبداية */
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+.slider-container img.active {
+  opacity: 1; /* بس الصورة الفعالة تبين */
+}
+.slider-container .slide-number {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #FFF;
+  padding: 5px 10px;
+  font-size: 14px;
+  z-index: 2;
+  border-radius: 6px;
+}
+.slider-controls {
+  width: 800px;
+  margin: 15px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.slider-controls .prev,
+.slider-controls .next,
+.slider-controls .play-pause {
+  background-color: #009688;
+  color: #FFF;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px 15px;
+  user-select: none;
+  transition: 0.3s;
+  border: none;
+}
+.slider-controls .prev:hover,
+.slider-controls .next:hover,
+.slider-controls .play-pause:hover {
+  background-color: #00796b;
+}
+.slider-controls .prev.disabled,
+.slider-controls .next.disabled {
+  background-color: rgba(0, 150, 136, 0.4);
+  cursor: no-drop;
+}
+.slider-controls .indicators {
+  flex: 1;
+}
+.slider-controls .indicators ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.slider-controls .indicators ul li {
+  background-color: #ddd;
+  color: #333;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  line-height: 30px;
+  cursor: pointer;
+  transition: 0.3s; /* جان عندك 00.3s خطأ */
+}
+.slider-controls .indicators ul li.active,
+.slider-controls .indicators ul li:hover {
+  background-color: #009688;
+  color: #FFF;
+}
+/* التجاوب مع الجوال */
+@media (max-width: 850px) {
+  .slider-container,
+  .slider-controls {
+    width: 95%;
+  }
+  .slider-container {
+    height: auto;
+    aspect-ratio: 16 / 5; /* يحافظ على التناسب بالموبايل */
+  }
+  .slider-controls {
+    flex-wrap: wrap;
+  }
+  .slider-controls .indicators {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
